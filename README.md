@@ -1,8 +1,8 @@
 # AirCnC Introduction
 
-[![Build Status](https://img.shields.io/travis/USER/REPO.svg?style=flat-square)](https://travis-ci.org/USER/REPO)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/USER/REPO.svg?style=flat-square)](https://packagist.org/packages/USER/REPO)
+![Top Language](https://img.shields.io/github/languages/top/mtslzx/AirCnC?color=orange&label=Swift&logo=Swift&style=flat-square)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square&color=orange)](LICENSE.md)
+![Code Size](https://img.shields.io/github/languages/code-size/mtslzx/AirCnC?color=orange&style=flat-square)
 
 This project has been developed to achieve the purpose of `Make a SwiftUI Application`.
 
@@ -20,17 +20,15 @@ You can contribute to the project by following these steps:
 
 This project is licensed under the [MIT License](LICENSE.md).
 
-
+---
 
 # 프로젝트 소개
 
-[![Build Status](https://img.shields.io/travis/USER/REPO.svg?style=flat-square)](https://travis-ci.org/USER/REPO)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/USER/REPO.svg?style=flat-square)](https://packagist.org/packages/USER/REPO)
+![Top Language](https://img.shields.io/github/languages/top/mtslzx/AirCnC?color=orange&label=Swift&logo=Swift&style=flat-square)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square&color=orange)](LICENSE.md)
+![Code Size](https://img.shields.io/github/languages/code-size/mtslzx/AirCnC?color=orange&style=flat-square)
 
 이 프로젝트는 `SwiftUI 어플리케이션`을 만들어 보기 위해 개발되었습니다.
-
-```
 
 ## 기여
 
@@ -40,8 +38,10 @@ This project is licensed under the [MIT License](LICENSE.md).
 2. 기능 브랜치를 만듭니다 (git checkout -b my-new-feature)
 3. 변경 사항을 커밋합니다 (git commit -am 'Add some feature')
 4. 브랜치에 push합니다 (git push origin my-new-feature)
-5. 새 Pull Request를 만듭니다."
+5. 새 Pull Request를 만듭니다.
 
 ## 라이선스
 
 이 프로젝트는 [MIT 라이선스](LICENSE.md)를 따릅니다.
+
+---
