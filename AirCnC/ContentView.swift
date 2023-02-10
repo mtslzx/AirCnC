@@ -9,10 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State private var imgLst: [String] = [
+    "hattefjall_1",
+    "hattefjall_2",
+    "hattefjall_3",
+    "hattefjall_4",
+    "hattefjall_5"
+    ]
+    
     @State private var date: Date = Date()
     @State private var isFavorite: Bool = false
-    @State private var PicIdx: Int = 5  // 총 이미지 개수
-    @State private var currentPicIdx: Int = 1  // 현재 보고있는 이미지 번호
+    @State private var ImgIdx: Int = 5  // 총 이미지 개수
+    @State private var currentImgIdx: Int = 0  // 현재 보고있는 이미지 번호
     @State private var isLeftExist: Bool = false
     @State private var isRightExist: Bool = true
     
@@ -29,14 +37,21 @@ struct ContentView: View {
     var productImage: some View {
         ZStack{
             HStack {
-                LeftButton(PicIdx: $PicIdx, currentPicIdx: $currentPicIdx)
-                Image("image")
+                LeftButton(ImgIdx: $ImgIdx, currentImgIdx: $currentImgIdx)
+                Image(imgLst[currentImgIdx])  // imgView
                     .resizable()
                     .aspectRatio(contentMode: .fit)
 //                    .frame(width: UIScreen.main.bounds.width*3/4, height: UIScreen.main.bounds.height/3)
-                RightButton(PicIdx: $PicIdx, currentPicIdx: $currentPicIdx)
+                RightButton(ImgIdx: $ImgIdx, currentImgIdx: $currentImgIdx, imgLst:$imgLst)
             }
-            Text("\(currentPicIdx)/\(PicIdx)")
+            Text("\(currentImgIdx+1)|\(imgLst.count)")  // imgCounter
+                .font(.callout)
+                .fontWidth(.expanded)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+                .tracking(7)
+                .padding(.top, 220.0)
+                .opacity(0.5)
         }
     }
     
@@ -91,9 +106,9 @@ struct ContentView: View {
     }
     
     var reserveDate: some View {
-        VStack {
+        VStack() {
             DatePicker("\(date, formatter:  dateFormatter)", selection: $date, in: Date()..., displayedComponents: [.date])
-                .datePickerStyle(.compact)
+                .datePickerStyle(.automatic)
         }
     }
     
@@ -121,27 +136,29 @@ struct FavoriteButton: View {
 
 struct LeftButton: View {
 //    @Binding var isLeftExist: Bool
-    @Binding var PicIdx: Int
-    @Binding var currentPicIdx: Int
+    @Binding var ImgIdx: Int
+    @Binding var currentImgIdx: Int
     var body: some View {
         Button() {
-            currentPicIdx -= 1
+            currentImgIdx -= 1
         } label: {
-            Image(systemName: currentPicIdx > 1 ? "arrow.left.circle.fill" : "arrow.left.circle").foregroundColor(.primary)
-        }
+            Image(systemName: currentImgIdx > 0 ? "arrow.left.circle.fill" : "arrow.left.circle").foregroundColor(.primary)
+        }.disabled(0 == currentImgIdx)
     }
 }
 
 struct RightButton: View {
 //    @Binding var isRightExist: Bool
-    @Binding var PicIdx: Int
-    @Binding var currentPicIdx: Int
+    @Binding var ImgIdx: Int
+    @Binding var currentImgIdx: Int
+    @Binding var imgLst: [String]
+    
     var body: some View {
         Button {
-            currentPicIdx += 1
+            currentImgIdx += 1
         } label: {
-            Image(systemName: currentPicIdx < PicIdx ? "arrow.forward.circle.fill" : "arrow.forward.circle").foregroundColor(.primary)
-        }//.disabled(!isRightExist) // isRightExist에 대해 독립적인 계산 필요
+            Image(systemName: currentImgIdx < imgLst.count-1 ? "arrow.forward.circle.fill" : "arrow.forward.circle").foregroundColor(.primary)
+        }.disabled(currentImgIdx + 1 == imgLst.count) // isRightExist에 대해 독립적인 계산 필요
     }
 }
 
