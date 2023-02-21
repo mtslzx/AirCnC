@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		967DAD5E29A4A0280066EE33 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967DAD5D29A4A0280066EE33 /* ItemRow.swift */; };
+		967DAD6029A4A0AA0066EE33 /* W6D1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967DAD5F29A4A0AA0066EE33 /* W6D1.swift */; };
+		96CDC664299BAADE00303F0C /* W5D2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CDC663299BAADE00303F0C /* W5D2.swift */; };
 		96FA75F0298D255100573410 /* AirCnCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FA75EF298D255100573410 /* AirCnCApp.swift */; };
 		96FA75F2298D255100573410 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FA75F1298D255100573410 /* ContentView.swift */; };
 		96FA75F4298D255300573410 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96FA75F3298D255300573410 /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		967DAD5D29A4A0280066EE33 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
+		967DAD5F29A4A0AA0066EE33 /* W6D1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = W6D1.swift; sourceTree = "<group>"; };
+		96CDC663299BAADE00303F0C /* W5D2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = W5D2.swift; sourceTree = "<group>"; };
 		96FA75EC298D255100573410 /* AirCnC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirCnC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FA75EF298D255100573410 /* AirCnCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirCnCApp.swift; sourceTree = "<group>"; };
 		96FA75F1298D255100573410 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +59,9 @@
 			children = (
 				96FA75EF298D255100573410 /* AirCnCApp.swift */,
 				96FA75F1298D255100573410 /* ContentView.swift */,
+				96CDC663299BAADE00303F0C /* W5D2.swift */,
+				967DAD5D29A4A0280066EE33 /* ItemRow.swift */,
+				967DAD5F29A4A0AA0066EE33 /* W6D1.swift */,
 				96FA75F3298D255300573410 /* Assets.xcassets */,
 				96FA75F5298D255300573410 /* Preview Content */,
 			);
@@ -137,8 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96CDC664299BAADE00303F0C /* W5D2.swift in Sources */,
 				96FA75F2298D255100573410 /* ContentView.swift in Sources */,
 				96FA75F0298D255100573410 /* AirCnCApp.swift in Sources */,
+				967DAD6029A4A0AA0066EE33 /* W6D1.swift in Sources */,
+				967DAD5E29A4A0280066EE33 /* ItemRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
