@@ -65,7 +65,7 @@ struct ContentView: View {
     
     var userInfo: some View {
         HStack(spacing: 5) {
-            Image("franky_180").resizable().clipShape(Circle()).frame(width: 40, height: 40)
+            Image("franky").resizable().clipShape(Circle()).frame(width: 40, height: 40)
             Text("프랭키").font(.title3).fontWeight(.bold)
         }
     }
