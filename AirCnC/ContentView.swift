@@ -9,13 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var imgLst: [String] = [
-    "hattefjall_1",
-    "hattefjall_2",
-    "hattefjall_3",
-    "hattefjall_4",
-    "hattefjall_5"
-    ]
+    var product: Product
     
     @State private var date: Date = Date()
     @State private var isFavorite: Bool = false
@@ -35,23 +29,27 @@ struct ContentView: View {
     }
     
     var productImage: some View {
-        ZStack{
-            HStack {
-                LeftButton(ImgIdx: $ImgIdx, currentImgIdx: $currentImgIdx)
-                Image(imgLst[currentImgIdx])  // imgView
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: UIScreen.main.bounds.width*3/4, height: UIScreen.main.bounds.height/3)
-                RightButton(ImgIdx: $ImgIdx, currentImgIdx: $currentImgIdx, imgLst:$imgLst)
+        ZStack {
+            if let imgLst = product.productImage? {  // 옵셔널 바인딩
+                HStack {
+                    LeftButton(ImgIdx: $ImgIdx, currentImgIdx: $currentImgIdx)
+                    Image(imgLst[currentImgIdx])  // imgView
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    //                    .frame(width: UIScreen.main.bounds.width*3/4, height: UIScreen.main.bounds.height/3)
+                    RightButton(ImgIdx: $ImgIdx, currentImgIdx: $currentImgIdx, imgLst:imgLst)
+                }
+                Text("\(currentImgIdx+1)|\(imgLst.count)")  // imgCounter
+                    .font(.callout)
+                    .fontWidth(.expanded)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    .tracking(7)
+                    .padding(.top, 220.0)
+                    .opacity(0.5)
+            } else {
+                Text("There are no Image")
             }
-            Text("\(currentImgIdx+1)|\(imgLst.count)")  // imgCounter
-                .font(.callout)
-                .fontWidth(.expanded)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.center)
-                .tracking(7)
-                .padding(.top, 220.0)
-                .opacity(0.5)
         }
     }
     
@@ -164,6 +162,6 @@ struct RightButton: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(product: productSample)
     }
 }

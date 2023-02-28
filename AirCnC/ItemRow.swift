@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct ItemRow: View {
-    let item: Item
+struct productRow: View {
+    let product: Product
     
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
-            Image("\(item.img)").resizable()
+            Image("\(product.thumbnail)").resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 60, height: 60, alignment: .leading)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.trailing, 10)
-            Text("\(item.name)").font(.title3).fontWeight(.heavy).fontDesign(.monospaced)
+            Text("\(product.productName)").font(.title3).fontWeight(.heavy).fontDesign(.monospaced)
                 .font(.title3)
             Spacer()
-            Text("\(item.user)")
+            Text("\(product.user)")
                 .font(.callout)
                 .fontDesign(.default)
         }
@@ -29,7 +29,7 @@ struct ItemRow: View {
 
 struct ItemRow_Previews: PreviewProvider {
     static var previews: some View {
-        ItemRow(item: itemList[0])
+        productRow(product: productSample)
     }
 }
 
