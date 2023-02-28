@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Product {
+struct Product: Identifiable {  // Identifiable을 통해 Store에서 리스트로 주구장창 생길 Product를 구분시켜 주어야 하나보다.
     var id = UUID()
     var productName : String
     var thumbnail : String?
     var productImage : [String]?
-    var price : Int?
+    var price : Int
     var size : Size?
     var user : User
     

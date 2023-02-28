@@ -19,7 +19,7 @@ class User {  // 사용자 클래스 생성
     // 미리 생성한 유저의 정보를 적어놓을 수 있음?
     static let ggamdi = User(name: "깜디", image: "ggamdi")
     static let franky = User(name: "프랭키", image: "franky")
-    static let goyangci = User(name: "고양씨", image: "goyangci")
+    static let goyangci = User(name: "고양씨", image: "goyangc")
     static let popo = User(name: "뽀뽀", image: "popo")
     // 이렇게 하면 외부에서 생성자로 생성을 했을 때 기본적으로 가지고 있는 유저가 된다고 한다.
 }

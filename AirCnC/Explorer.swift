@@ -7,19 +7,23 @@
 
 import SwiftUI
 
-struct Explore: View {
+struct Explorer: View {
     let store = Store()  // 싱글 턴?? 이라고 한다.
     var body: some View {
-        
-        
-        
-        
-        
+        NavigationView {
+            List(store.products) { item in
+                ItemRow(product: item)
+                NavigationLink("￦" + String(item.price) + " ∙ " + item.user.name, destination: ContentView(product: item))
+            }
+            .listStyle(.insetGrouped)
+            .navigationBarTitle("AirCnC")
+        }
     }
 }
 
+
 struct Explore_Previews: PreviewProvider {
     static var previews: some View {
-        Explore()
+        Explorer()
     }
 }

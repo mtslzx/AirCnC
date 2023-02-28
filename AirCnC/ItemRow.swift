@@ -7,29 +7,35 @@
 
 import SwiftUI
 
-struct productRow: View {
+struct ItemRow: View {
     let product: Product
     
     var body: some View {
-        HStack(alignment: .center, spacing: 0) {
-            Image("\(product.thumbnail)").resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 60, height: 60, alignment: .leading)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.trailing, 10)
+        HStack(alignment: .center, spacing: 10) {
+            
+            if let thumbnail = product.thumbnail {
+                Image("\(thumbnail)").resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 80, height: 80, alignment: .leading)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.trailing, 10)
+            } else {
+                Text("NO IMAGE")
+            }
             Text("\(product.productName)").font(.title3).fontWeight(.heavy).fontDesign(.monospaced)
-                .font(.title3)
-            Spacer()
-            Text("\(product.user)")
-                .font(.callout)
-                .fontDesign(.default)
+                .frame(alignment: .top)
+//            Spacer()
+//            Text("\(product.user.name)")
+//                .font(.callout)
+//                .fontWeight(.medium)
+//                .fontDesign(.default)
         }
     }
 }
 
 struct ItemRow_Previews: PreviewProvider {
     static var previews: some View {
-        productRow(product: productSample)
+        ItemRow(product: productSample)
     }
 }
 
