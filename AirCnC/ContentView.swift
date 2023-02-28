@@ -9,14 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var imgLst: [String] = [
-    "hattefjall_1",
-    "hattefjall_2",
-    "hattefjall_3",
-    "hattefjall_4",
-    "hattefjall_5"
-    ]
-    
+    var product: Product
+        
     @State private var date: Date = Date()
     @State private var isFavorite: Bool = false
     @State private var ImgIdx: Int = 5  // 총 이미지 개수
@@ -35,38 +29,46 @@ struct ContentView: View {
     }
     
     var productImage: some View {
-        ZStack{
-            HStack {
-                LeftButton(ImgIdx: $ImgIdx, currentImgIdx: $currentImgIdx)
-                Image(imgLst[currentImgIdx])  // imgView
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: UIScreen.main.bounds.width*3/4, height: UIScreen.main.bounds.height/3)
-                RightButton(ImgIdx: $ImgIdx, currentImgIdx: $currentImgIdx, imgLst:$imgLst)
+        ZStack {
+            if let imgLst = product.productImage {  // 옵셔널 바인딩
+                HStack {
+                    LeftButton(ImgIdx: $ImgIdx, currentImgIdx: $currentImgIdx)
+                    Image(imgLst[currentImgIdx])  // imgView
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    //                    .frame(width: UIScreen.main.bounds.width*3/4, height: UIScreen.main.bounds.height/3)
+                    RightButton(ImgIdx: $ImgIdx, currentImgIdx: $currentImgIdx, imgLst:imgLst)
+                }
+                Text("\(currentImgIdx+1)|\(imgLst.count)")  // imgCounter
+                    .font(.callout)
+                    .fontWidth(.expanded)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    .tracking(7)
+                    .padding(.top, 220.0)
+                    .opacity(0.5)
+            } else {
+                Text("There are no Image")
             }
-            Text("\(currentImgIdx+1)|\(imgLst.count)")  // imgCounter
-                .font(.callout)
-                .fontWidth(.expanded)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.center)
-                .tracking(7)
-                .padding(.top, 220.0)
-                .opacity(0.5)
         }
     }
     
     var productName: some View {
         HStack {
-            Text("HATTEFJÄLL").font(.largeTitle).fontWeight(.heavy).fontDesign(.monospaced).tracking(/*@START_MENU_TOKEN@*/2.0/*@END_MENU_TOKEN@*/) // 가구 이름
+            Text(product.productName).font(.largeTitle).fontWeight(.heavy).fontDesign(.monospaced).tracking(/*@START_MENU_TOKEN@*/2.0/*@END_MENU_TOKEN@*/) // 가구 이름
             Spacer()
             FavoriteButton(isFavorite: $isFavorite)
         }
     }
     
     var userInfo: some View {
-        HStack(spacing: 5) {
-            Image("franky").resizable().clipShape(Circle()).frame(width: 40, height: 40)
-            Text("프랭키").font(.title3).fontWeight(.bold)
+        HStack(spacing: 10) {
+            if let userImage = product.user.image {
+                Image(userImage).resizable().clipShape(Circle()).frame(width: 40, height: 40)
+                Text(product.user.name).font(.title3).fontWeight(.bold)
+            } else {
+                Text("NO Image")
+            }
         }
     }
     
@@ -81,28 +83,43 @@ struct ContentView: View {
     var Price: some View {
         HStack() {
             Text("가격").fontWeight(.bold).padding(.trailing, 1.0)
-            Text("10,000원")
+            if let price = product.price {
+                Text(String(price) + "원")
+            } else {
+                Text("NONE")
+            }
         }
     }
+    
     var Height: some View {
         HStack {
-            Text("폭").fontWeight(.bold).padding(.trailing)
-            Text("50cm")
+            Text("높이").fontWeight(.bold).padding(.trailing, 1.0)
+            if let height = product.size?.h {
+                Text(String(height) + "cm")
+            } else {
+                Text("정보없음")
+            }
         }
     }
     var Width: some View {
         HStack {
             Text("너비").fontWeight(.bold).padding(.trailing, 1.0)
-            Text("50cm")
+            if let width = product.size?.w {
+                Text(String(width) + "cm")
+            } else {
+                Text("정보없음")
+            }
         }
-        
     }
     var Depth: some View {
         HStack {
-            Text("높이").fontWeight(.bold).padding(.trailing, 1.0)
-            Text("50cm")
+            Text("깊이").fontWeight(.bold).padding(.trailing, 1.0)
+            if let depth = product.size?.d {
+                Text(String(depth) + "cm")
+            } else {
+                Text("정보없음")
+            }
         }
-        
     }
     
     var reserveDate: some View {
@@ -151,7 +168,7 @@ struct RightButton: View {
 //    @Binding var isRightExist: Bool
     @Binding var ImgIdx: Int
     @Binding var currentImgIdx: Int
-    @Binding var imgLst: [String]
+    let imgLst: [String]
     
     var body: some View {
         Button {
@@ -164,6 +181,6 @@ struct RightButton: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(product: productSample)
     }
 }
