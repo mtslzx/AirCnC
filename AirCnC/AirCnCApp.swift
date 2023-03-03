@@ -11,7 +11,7 @@ import SwiftUI
 struct AirCnCApp: App {
     var body: some Scene {
         WindowGroup {
-            Explorer()
+            MainView().environmentObject(Store())
         }
     }
 }

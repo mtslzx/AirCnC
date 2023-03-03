@@ -7,9 +7,33 @@
 
 import Foundation
 
-final class Store {  // final은 이 클래스를 다른 곳에서 상속받지 못하도록 한다.
+final class Store: ObservableObject {  // final은 이 클래스를 다른 곳에서 상속받지 못하도록 한다.
     
-    var products: [Product] // 프로덕트라는 클래스를 가진 배열을 가질 것이므로
+    @Published var products: [Product] // 프로덕트라는 클래스를 가진 배열을 가질 것이므로
+    @Published var FavoritedProducts: [Product] = []
+    
+    func favoritedProducts(product: [Product]) -> [Product] {
+        let FavoritedProducts = product.filter { item in
+            return item.isFavorite
+        }
+        return FavoritedProducts
+    }
+    
+    func toggleFavorite(of product: Product) {
+        guard let indexOfProduct = products.firstIndex(of: product) else { return }
+        products[indexOfProduct].isFavorite.toggle()
+        
+        // favoritedProducts에 추가하기
+        if products[indexOfProduct].isFavorite {
+            FavoritedProducts.append(product)
+        }
+        
+        // favoritedProducts에서 삭제하기
+        else {
+            guard let indexOfProduct = FavoritedProducts.firstIndex(of: product) else { return }
+            FavoritedProducts.remove(at: indexOfProduct)
+        }
+    }
     
     init() {
         products = [  // 실제 상용 서비스를 만든다면 이런 미리 만들어진 배열이 아닌 유저가 직접 append 할 수 있도록 만들어야 한다.

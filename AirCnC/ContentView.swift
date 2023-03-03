@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var product: Product
+    @State var product: Product
         
     @State private var date: Date = Date()
-    @State private var isFavorite: Bool = false
+//    @State private var isFavorite: Bool = false
     @State private var ImgIdx: Int = 5  // 총 이미지 개수
     @State private var currentImgIdx: Int = 0  // 현재 보고있는 이미지 번호
     @State private var isLeftExist: Bool = false
@@ -57,7 +57,7 @@ struct ContentView: View {
         HStack {
             Text(product.productName).font(.largeTitle).fontWeight(.heavy).fontDesign(.monospaced).tracking(/*@START_MENU_TOKEN@*/2.0/*@END_MENU_TOKEN@*/) // 가구 이름
             Spacer()
-            FavoriteButton(isFavorite: $isFavorite)
+            FavoriteButton(product: $product)
         }
     }
     
@@ -138,15 +138,29 @@ struct ContentView: View {
 
 // FavoriteButton Struct
 struct FavoriteButton: View {
-    @Binding var isFavorite: Bool
+    
+    @EnvironmentObject private var store: Store
+    
+//    @Binding var isFavorite: Bool
+    
+    @Binding var product: Product
+    
+    private var imageName: String { // Computed Property?
+        guard let indexOfProduct = store.products.firstIndex(of: product) else { return "heart" }
+        return store.products[indexOfProduct].isFavorite ? "heart.fill" : "heart"
+    }
     
     var body: some View {
         Button {
-            isFavorite.toggle()
+//            isFavorite.toggle()
+            store.toggleFavorite(of: product)
         } label: {
-            Image(systemName: self.isFavorite ? "heart.fill" : "heart")
+            Image(systemName: imageName)
                 .font(.custom("heartIcon", size: 28))
-                .foregroundColor(Color.pink)
+                .foregroundColor(Color.red)
+//            Image(systemName: self.isFavorite ? "heart.fill" : "heart")
+//                .font(.custom("heartIcon", size: 28))
+//                .foregroundColor(Color.pink)
         }
     }
 }
@@ -182,5 +196,6 @@ struct RightButton: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(product: productSample)
+            .environmentObject(Store())
     }
 }
