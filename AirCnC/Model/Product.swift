@@ -16,6 +16,14 @@ struct Product: Identifiable {  // Identifiable을 통해 Store에서 리스트�
     var size : Size?
     var user : User
     
+    var isFavorite: Bool = false
+    
+}
+
+extension Product: Equatable {  // Extension?
+    static func == (lhs: Product, rhs: Product) -> Bool {  // left handed side??
+        return lhs.id == rhs.id
+    }
 }
 
 typealias Size = (w : Int, d : Int, h : Int)  // ?
